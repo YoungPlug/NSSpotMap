@@ -19,53 +19,7 @@
 - Supabase Database, Realtime и Storage
 - Vercel для публикации
 
-## Запуск локально
 
-Нужен Node.js и npm.
-
-```sh
-npm install
-npm run dev
-```
-
-Vite выведет локальный адрес в терминале. Чтобы собрать production-версию:
-
-```sh
-npm run build
-npm run preview
-```
-
-## Настройка Supabase
-
-SQL-скрипт `supabase/setup.sql` создаёт таблицу спотов, политики публичного чтения и добавления, хранилище фотографий и две стартовые точки.
-
-1. Создай проект Supabase.
-2. Открой `supabase/setup.sql` в редакторе кода и скопируй всё его содержимое.
-3. В Supabase открой **SQL Editor**, вставь SQL-код и нажми **Run**. Вставлять в SQL Editor путь `supabase/setup.sql` нельзя.
-4. Скопируй `.env.example` в `.env.local`.
-5. В `.env.local` укажи Project URL и anon/publishable key из настроек API проекта:
-
-   ```dotenv
-   VITE_SUPABASE_URL=https://YOUR_PROJECT_ID.supabase.co
-   VITE_SUPABASE_ANON_KEY=YOUR_ANON_OR_PUBLISHABLE_KEY
-   ```
-
-6. Перезапусти Vite после изменения переменных.
-
-`service_role` / secret key не нужен и не должен попадать в браузерный код. Файл `.env.local` исключён из Git. В репозиторий можно добавить только `.env.example` с пустыми примерами.
-
-Если переменные Supabase не настроены, приложение работает в локальном режиме: данные хранятся только в браузере и не синхронизируются.
-
-## Публикация на Vercel
-
-1. Отправь проект в GitHub и импортируй репозиторий через **Vercel → Add New → Project**.
-2. Выбери корневую папку проекта (`./`). Vercel обычно распознаёт Vite автоматически. Настройки сборки:
-   - **Framework Preset:** Vite
-   - **Install Command:** `npm install`
-   - **Build Command:** `npm run build`
-   - **Output Directory:** `dist`
-3. В **Project Settings → Environment Variables** добавь `VITE_SUPABASE_URL` и `VITE_SUPABASE_ANON_KEY` со значениями из `.env.local`. Выбери окружения **Production** и **Preview**.
-4. Запусти deployment. Если добавил или изменил переменные после сборки, создай новый deployment, чтобы применились новые значения.
 
 ## Публичный доступ и фотографии
 
